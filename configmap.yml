@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: personal-website
+data:
+  # Backend Configuration
+  PORT: "5000"
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "info"
+  DB_NAME: "personalwebsite"
+  
+  # Frontend Configuration
+  NEXT_PUBLIC_BASE_URL: "http://app.local"
+  NODE_ENV: "production"

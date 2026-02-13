@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: personal-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: your-dockerhub/frontend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            # Next.js Public Environment Variables
+            - name: NEXT_PUBLIC_BASE_URL
+              value: "http://app.local"
+            - name: NEXT_PUBLIC_BACKEND_URL
+              value: "http://backend.personal-website.svc.cluster.local:5000"
+            
+            # API Keys and Secrets
+            - name: RESEND_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: RESEND_API_KEY
+            
+            # Node Environment
+            - name: NODE_ENV
+              value: "production"
