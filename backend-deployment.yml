@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ms22-backend:latest
-          imagePullPolicy: Never
+          image: shardendumishra22/ms22-backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:
