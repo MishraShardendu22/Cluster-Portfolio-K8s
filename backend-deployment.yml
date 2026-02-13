@@ -20,7 +20,6 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            # MongoDB Configuration
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
@@ -29,7 +28,6 @@ spec:
             - name: DB_NAME
               value: "personalwebsite"
             
-            # Authentication & Security
             - name: ADMIN_PASS
               valueFrom:
                 secretKeyRef:
@@ -41,14 +39,12 @@ spec:
                   name: app-secrets
                   key: JWT_SECRET
             
-            # GitHub Integration
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: app-secrets
                   key: GITHUB_TOKEN
             
-            # Application Configuration
             - name: PORT
               value: "5000"
             - name: ENVIRONMENT
