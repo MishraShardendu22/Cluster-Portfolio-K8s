@@ -87,7 +87,7 @@ func setupMiddleware(app *fiber.App, config *models.Config) {
 	// Global rate limiter - applies to all routes
 	// Limits requests per IP address to prevent abuse
 	app.Use(limiter.New(limiter.Config{
-		Max:        100,             // Maximum number of requests
+		Max:        500,             // Maximum number of requests (increased for K8s internal traffic)
 		Expiration: 1 * time.Minute, // Time window
 		KeyGenerator: func(c *fiber.Ctx) string {
 			return c.IP() // Rate limit by IP address
